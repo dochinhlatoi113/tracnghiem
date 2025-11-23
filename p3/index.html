@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm tính cách MBTI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Màn hình giới thiệu -->
+        <div id="introScreen" class="screen active">
+            <div class="intro-card">
+                <h1>Trắc nghiệm tính cách MBTI</h1>
+                
+                <div class="intro-content">
+                    <p>MBTI là một công cụ được sáng tạo với mục đích giúp người sử dụng hiểu hơn về bản thân qua bốn phạm trù sau:</p>
+                    
+                    <ol>
+                        <li>Chiều hướng chúng ta tập trung sự chú ý và nạp lại năng lượng.</li>
+                        <li>Cách thức chúng ta tiếp nhận thông tin và dạng thông tin mà chúng ta yêu thích cùng tin cậy.</li>
+                        <li>Cách thức chúng ta đưa ra quyết định.</li>
+                        <li>Cách tiếp cận của chúng ta với thế giới bên ngoài.</li>
+                    </ol>
+                    
+                    <p>MBTI xếp người dùng vào 1 trong 16 nhóm tính cách dựa trên 4 cặp đối lập: Hướng ngoại (E) hay Hướng nội (I) - lấy năng lượng từ đám đông hay từ một mình, dùng Giác quan (S) hay Trực giác (N) - tập trung vào chi tiết thực tế hay ý tưởng tổng quan, quyết định bằng Lý trí (T) hay Tình cảm (F) - dựa vào logic hay cảm xúc con người, thích sống Nguyên tắc (J) hay Linh hoạt (P) - cần kế hoạch rõ ràng hay tùy cơ ứng biến</p>
+                    
+                    <div class="instructions">
+                        <h3><strong>TRƯỚC</strong> khi thực hiện, người thực hiện cần:</h3>
+                        <ol>
+                            <li>Tự nguyện làm công cụ này;</li>
+                            <li>Lắng đọng tinh thần 5 phút để nhẹ nhàng;</li>
+                            <li>Hiểu đây là công cụ tự đánh giá, do đó sẽ vô dụng nếu người thực hiện cố gắng trả lời vì muốn có một hình ảnh tốt đẹp nào đó.</li>
+                            <li>Sẵn sàng tâm trí để là chính mình thật nhất có thể khi làm công cụ này - đừng tự đánh giá, đừng tự chê, đừng tự khen, đừng cố gắng giống ai.</li>
+                        </ol>
+                        
+                        <h3><strong>TRONG</strong> khi thực hiện, người thực hiện cần:</h3>
+                        <p>Chọn câu trả lời đến với mình nhanh và tự nhiên nhất. Càng suy nghĩ thì càng không tốt vì lúc ấy người thực hiện đang suy tính và dùng lý trí để trả lời.</p>
+                        <p><strong>Hãy là chính mình và trả lời một cách trung thực để tìm ra loại tính cách của bạn.</strong></p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentName">Họ và tên:</label>
+                    <input type="text" id="studentName" placeholder="Nhập họ tên của bạn">
+                </div>
+                
+                <button id="startBtn" class="btn btn-primary">Bắt đầu làm bài</button>
+            </div>
+        </div>
+
+        <!-- Màn hình làm bài -->
+        <div id="quizScreen" class="screen">
+            <!-- Navigation tabs -->
+            <div class="part-nav">
+                <div class="nav-item active" data-part="0">
+                    <span class="nav-number">1</span>
+                    <span class="nav-title">E vs I</span>
+                    <span class="nav-subtitle">Hướng ngoại - Hướng nội</span>
+                </div>
+                <div class="nav-item" data-part="1">
+                    <span class="nav-number">2</span>
+                    <span class="nav-title">S vs N</span>
+                    <span class="nav-subtitle">Tri giác - Trực giác</span>
+                </div>
+                <div class="nav-item" data-part="2">
+                    <span class="nav-number">3</span>
+                    <span class="nav-title">T vs F</span>
+                    <span class="nav-subtitle">Lý trí - Cảm xúc</span>
+                </div>
+                <div class="nav-item" data-part="3">
+                    <span class="nav-number">4</span>
+                    <span class="nav-title">J vs P</span>
+                    <span class="nav-subtitle">Nguyên tắc - Linh hoạt</span>
+                </div>
+                <div class="nav-item" data-part="result">
+                    <span class="nav-number">5</span>
+                    <span class="nav-title">Kết quả</span>
+                    <span class="nav-subtitle">MBTI của bạn</span>
+                </div>
+            </div>
+
+            <!-- Question content -->
+            <div class="question-content">
+                <div class="part-header">
+                    <h2 id="partTitle">Phần 1: Hướng ngoại (E) vs. Hướng nội (I)</h2>
+                    <p id="partDescription">(Cách bạn nạp năng lượng và tương tác với thế giới)</p>
+                </div>
+
+                <div id="questionsList" class="questions-list">
+                    <!-- Câu hỏi sẽ được tạo động -->
+                </div>
+
+                <div class="navigation-buttons">
+                    <button id="prevPartBtn" class="btn btn-secondary">Phần trước</button>
+                    <button id="nextPartBtn" class="btn btn-primary">Phần tiếp</button>
+                    <button id="finishBtn" class="btn btn-success" style="display: none;">Hoàn thành</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình kết quả -->
+        <div id="resultScreen" class="screen">
+            <div class="result-card">
+                <h1>Kết quả trắc nghiệm MBTI</h1>
+                
+                <div class="result-info">
+                    <p><strong>Họ tên:</strong> <span id="resultName"></span></p>
+                </div>
+                
+                <div class="mbti-result">
+                    <div class="personality-type">
+                        <div class="type-code" id="personalityCode">INTJ</div>
+                        <div class="type-name" id="personalityName">Kiến trúc sư (The Architect)</div>
+                    </div>
+                    
+                    <div class="type-breakdown" id="typeBreakdown">
+                        <!-- Phân tích từng chiều sẽ được hiển thị ở đây -->
+                    </div>
+                    
+                    <div class="type-description" id="typeDescription">
+                        <!-- Mô tả chi tiết loại tính cách -->
+                    </div>
+                    
+                    <div class="career-suggestions" id="careerSuggestions">
+                        <!-- Gợi ý nghề nghiệp -->
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button id="restartBtn" class="btn btn-primary">Làm lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

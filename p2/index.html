@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIPQ - Trắc nghiệm Trí thông minh đa diện</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Màn hình giới thiệu -->
+    <div id="introScreen" class="screen active">
+        <div class="intro-container">
+            <div class="intro-header">
+                <h1 class="main-title">MIPQ</h1>
+                <h2 class="subtitle">Bảng hỏi nhận dạng Trí thông minh đa diện</h2>
+                <p class="description">Công cụ hỗ trợ bạn tự suy ngẫm để hiểu hơn về điểm mạnh của mình</p>
+            </div>
+
+            <div class="intelligence-types">
+                <h3>8 loại Trí thông minh được đánh giá:</h3>
+                <div class="types-grid">
+                    <div class="type-item verbal">
+                        <div class="type-number">1</div>
+                        <div class="type-name">Ngôn ngữ</div>
+                    </div>
+                    <div class="type-item logical">
+                        <div class="type-number">2</div>
+                        <div class="type-name">Logic - Toán học</div>
+                    </div>
+                    <div class="type-item visual">
+                        <div class="type-number">3</div>
+                        <div class="type-name">Thị giác - Không gian</div>
+                    </div>
+                    <div class="type-item interpersonal">
+                        <div class="type-number">4</div>
+                        <div class="type-name">Tương tác xã hội</div>
+                    </div>
+                    <div class="type-item musical">
+                        <div class="type-number">5</div>
+                        <div class="type-name">Âm nhạc</div>
+                    </div>
+                    <div class="type-item naturalistic">
+                        <div class="type-number">6</div>
+                        <div class="type-name">Thiên nhiên</div>
+                    </div>
+                    <div class="type-item bodily">
+                        <div class="type-number">7</div>
+                        <div class="type-name">Vận động cơ thể</div>
+                    </div>
+                    <div class="type-item intrapersonal">
+                        <div class="type-number">8</div>
+                        <div class="type-name">Nội tâm</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3>Hướng dẫn quan trọng:</h3>
+                
+                <div class="instruction-section">
+                    <h4>TRƯỚC khi thực hiện:</h4>
+                    <ul>
+                        <li>Tự nguyện làm công cụ này</li>
+                        <li>Lắng đọng tinh thần 5 phút để nhẹ nhàng</li>
+                        <li>Hiểu đây là công cụ tự đánh giá, sẽ vô dụng nếu cố gắng trả lời để có hình ảnh tốt đẹp</li>
+                        <li>Sẵn sàng tâm trí để là chính mình thật nhất - đừng tự đánh giá, đừng tự chê, đừng tự khen, đừng cố gắng giống ai</li>
+                    </ul>
+                </div>
+
+                <div class="instruction-section">
+                    <h4>TRONG khi thực hiện:</h4>
+                    <ul>
+                        <li>Chọn câu trả lời đến với bạn nhanh và tự nhiên nhất</li>
+                        <li>Càng suy nghĩ thì càng không tốt vì lúc ấy bạn đang dùng lý trí để trả lời</li>
+                        <li>Lựa chọn mức độ đồng ý cho mỗi câu hỏi:</li>
+                    </ul>
+                </div>
+
+                <div class="rating-guide">
+                    <div class="rating-item strongly-agree">
+                        <span class="rating-number">5</span>
+                        <span class="rating-text">Hoàn toàn đồng ý</span>
+                    </div>
+                    <div class="rating-item agree">
+                        <span class="rating-number">4</span>
+                        <span class="rating-text">Đồng ý</span>
+                    </div>
+                    <div class="rating-item neutral">
+                        <span class="rating-number">3</span>
+                        <span class="rating-text">Không rõ</span>
+                    </div>
+                    <div class="rating-item disagree">
+                        <span class="rating-number">2</span>
+                        <span class="rating-text">Không đồng ý</span>
+                    </div>
+                    <div class="rating-item strongly-disagree">
+                        <span class="rating-number">1</span>
+                        <span class="rating-text">Hoàn toàn không đồng ý</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="start-section">
+                <div class="name-input">
+                    <label for="studentName">Họ và tên:</label>
+                    <input type="text" id="studentName" placeholder="Nhập họ tên của bạn..." required>
+                </div>
+                <button id="startBtn" class="start-btn">
+                    <span>Bắt đầu làm bài</span>
+                    <div class="btn-icon">→</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Màn hình làm bài -->
+    <div id="quizScreen" class="screen">
+        <div class="quiz-container">
+            <!-- Header với tiến trình -->
+            <div class="quiz-header">
+                <div class="progress-section">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">64</span> câu
+                    </div>
+                </div>
+                <div class="student-info">
+                    <span id="studentNameDisplay"></span>
+                </div>
+            </div>
+
+            <!-- Navigation 8 loại trí thông minh -->
+            <div class="intelligence-nav">
+                <div class="nav-item verbal" data-type="verbal">
+                    <div class="nav-number">1</div>
+                    <div class="nav-name">Ngôn ngữ</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item logical" data-type="logical">
+                    <div class="nav-number">2</div>
+                    <div class="nav-name">Logic - Toán</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item visual" data-type="visual">
+                    <div class="nav-number">3</div>
+                    <div class="nav-name">Không gian</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item interpersonal" data-type="interpersonal">
+                    <div class="nav-number">4</div>
+                    <div class="nav-name">Tương tác</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item musical" data-type="musical">
+                    <div class="nav-number">5</div>
+                    <div class="nav-name">Âm nhạc</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item naturalistic" data-type="naturalistic">
+                    <div class="nav-number">6</div>
+                    <div class="nav-name">Thiên nhiên</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item bodily" data-type="bodily">
+                    <div class="nav-number">7</div>
+                    <div class="nav-name">Vận động</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+                <div class="nav-item intrapersonal" data-type="intrapersonal">
+                    <div class="nav-number">8</div>
+                    <div class="nav-name">Nội tâm</div>
+                    <div class="nav-progress">0/8</div>
+                </div>
+            </div>
+
+            <!-- Phần hiển thị câu hỏi -->
+            <div class="question-section">
+                <div class="question-header">
+                    <h2 id="sectionTitle">1. Verbal/Linguistic (Thông minh Ngôn ngữ)</h2>
+                    <p id="sectionDescription">Khả năng sử dụng ngôn ngữ hiệu quả, cả về mặt nói và viết</p>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">
+                        <span class="question-number" id="questionNumber">1.</span>
+                        <span id="questionContent">Tôi có thể dùng vốn từ phong phú để diễn đạt bản thân.</span>
+                    </div>
+
+                    <div class="rating-scale">
+                        <div class="rating-option" data-value="5">
+                            <input type="radio" name="currentQuestion" value="5" id="rating5">
+                            <label for="rating5">
+                                <span class="rating-circle">5</span>
+                                <span class="rating-label">Hoàn toàn đồng ý</span>
+                            </label>
+                        </div>
+                        <div class="rating-option" data-value="4">
+                            <input type="radio" name="currentQuestion" value="4" id="rating4">
+                            <label for="rating4">
+                                <span class="rating-circle">4</span>
+                                <span class="rating-label">Đồng ý</span>
+                            </label>
+                        </div>
+                        <div class="rating-option" data-value="3">
+                            <input type="radio" name="currentQuestion" value="3" id="rating3">
+                            <label for="rating3">
+                                <span class="rating-circle">3</span>
+                                <span class="rating-label">Không rõ</span>
+                            </label>
+                        </div>
+                        <div class="rating-option" data-value="2">
+                            <input type="radio" name="currentQuestion" value="2" id="rating2">
+                            <label for="rating2">
+                                <span class="rating-circle">2</span>
+                                <span class="rating-label">Không đồng ý</span>
+                            </label>
+                        </div>
+                        <div class="rating-option" data-value="1">
+                            <input type="radio" name="currentQuestion" value="1" id="rating1">
+                            <label for="rating1">
+                                <span class="rating-circle">1</span>
+                                <span class="rating-label">Hoàn toàn không đồng ý</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-navigation">
+                    <button id="prevBtn" class="nav-btn prev-btn" disabled>
+                        <span>←</span>
+                        <span>Câu trước</span>
+                    </button>
+                    <button id="nextBtn" class="nav-btn next-btn" disabled>
+                        <span>Câu tiếp</span>
+                        <span>→</span>
+                    </button>
+                    <button id="finishBtn" class="nav-btn finish-btn" style="display: none;">
+                        <span>Hoàn thành</span>
+                        <span>✓</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Màn hình kết quả -->
+    <div id="resultScreen" class="screen">
+        <div class="result-container">
+            <div class="result-header">
+                <h1>Kết quả MIPQ</h1>
+                <h2 id="resultName">Nguyễn Văn A</h2>
+                <p class="result-subtitle">Bảng phân tích Trí thông minh đa diện của bạn</p>
+            </div>
+
+            <div class="result-chart">
+                <h3>Biểu đồ điểm số (Tối đa: 40 điểm)</h3>
+                <div class="chart-container" id="chartContainer">
+                    <!-- Chart sẽ được tạo bởi JavaScript -->
+                </div>
+            </div>
+
+            <div class="result-table">
+                <h3>Bảng kết quả chi tiết</h3>
+                <div class="table-container">
+                    <table id="resultTable">
+                        <thead>
+                            <tr>
+                                <th>Thứ hạng</th>
+                                <th>Loại trí thông minh</th>
+                                <th>Điểm số</th>
+                                <th>Phần trăm</th>
+                                <th>Mức độ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTableBody">
+                            <!-- Dữ liệu sẽ được thêm bởi JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="result-descriptions" id="resultDescriptions">
+                <!-- Mô tả chi tiết sẽ được thêm bởi JavaScript -->
+            </div>
+
+            <div class="result-note">
+                <h3>Lưu ý quan trọng</h3>
+                <p><strong>Công cụ này mang tính tham khảo</strong> và không thay thế cho một quy trình tư vấn hướng nghiệp chuyên nghiệp.</p>
+                <p>Bạn cần thực hiện 2 bước sau để xác định và hiểu thêm về sở thích của mình vì không phải lúc nào trắc nghiệm cũng cho bạn kết quả chính xác.</p>
+                <p>Nếu có nhu cầu, hãy liên hệ bộ phận Tư vấn để được hỗ trợ chuyên nghiệp hơn.</p>
+            </div>
+
+            <div class="result-actions">
+                <button id="printBtn" class="action-btn print-btn">
+                    <span>📄</span>
+                    <span>In kết quả</span>
+                </button>
+                <button id="restartBtn" class="action-btn restart-btn">
+                    <span>🔄</span>
+                    <span>Làm lại bài test</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm Holland Code Test (RIASEC)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Màn hình giới thiệu -->
+        <div id="introScreen" class="screen active">
+            <div class="intro-card">
+                <h1>Trắc nghiệm định hướng nghề nghiệp Holland Code Test (RIASEC)</h1>
+                
+                <div class="intro-content">
+                    <p>Trắc nghiệm Holland chính là cơ sở để bạn đối chiếu sở thích, năng lực tự nhiên của mình với yêu cầu của các nhóm ngành nghề. Kết quả Bài trắc nghiệm định hướng nghề nghiệp giúp bạn tìm ra ba kiểu tính cách của bạn tương ứng với 3 mật mã Holland (ví dụ: RCE hoặc ECR ). Từ đó bạn có thể định hướng nghề nghiệp theo nhóm ngành phù hợp nhất.</p>
+                    
+                    <p>John Holland đã sắp xếp sáu loại tính cách này vào một lục giác dựa trên sở thích làm việc với những tác nhân kích thích khác nhau gồm: con người, dữ liệu, đồ vật và ý tưởng</p>
+                    
+                    <div class="instructions">
+                        <h3><strong>TRƯỚC</strong> khi thực hiện, người thực hiện cần:</h3>
+                        <ol>
+                            <li>Tự nguyện làm công cụ này;</li>
+                            <li>Lắng đọng tinh thần 5 phút để nhẹ nhàng;</li>
+                            <li>Hiểu đây là công cụ tự đánh giá, do đó sẽ vô dụng nếu người thực hiện cố gắng trả lời vì muốn có một hình ảnh tốt đẹp nào đó.</li>
+                            <li>Sẵn sàng tâm trí để là chính mình thật nhất có thể khi làm công cụ này - đừng tự đánh giá, đừng tự chê, đừng tự khen, đừng cố gắng giống ai.</li>
+                        </ol>
+                        
+                        <h3><strong>TRONG</strong> khi thực hiện, người thực hiện cần:</h3>
+                        <p>Chọn câu trả lời đến với mình nhanh và tự nhiên nhất. Càng suy nghĩ thì càng không tốt vì lúc ấy người thực hiện đang suy tính và dùng lý trí để trả lời.</p>
+                        
+                        <p><strong>Lựa chọn mức độ đồng ý của mình cho mỗi câu ở các phần tiếp theo bằng cách chọn vào ô tương ứng:</strong></p>
+                        <div class="rating-legend">
+                            <span class="rating-item">Rất không thích</span>
+                            <span class="rating-item">Không thích</span>
+                            <span class="rating-item">Bình thường</span>
+                            <span class="rating-item">Thích</span>
+                            <span class="rating-item">Rất thích</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentName">Họ và tên:</label>
+                    <input type="text" id="studentName" placeholder="Nhập họ tên của bạn">
+                </div>
+                
+                <button id="startBtn" class="btn btn-primary">Bắt đầu làm bài</button>
+            </div>
+        </div>
+
+        <!-- Màn hình làm bài -->
+        <div id="quizScreen" class="screen">
+            <!-- Navigation tabs -->
+            <div class="group-nav">
+                <div class="nav-item active" data-group="0">
+                    <span class="nav-number">1</span>
+                    <span class="nav-title">Kỹ thuật</span>
+                </div>
+                <div class="nav-item" data-group="1">
+                    <span class="nav-number">2</span>
+                    <span class="nav-title">Nghiên cứu</span>
+                </div>
+                <div class="nav-item" data-group="2">
+                    <span class="nav-number">3</span>
+                    <span class="nav-title">Nghệ thuật</span>
+                </div>
+                <div class="nav-item" data-group="3">
+                    <span class="nav-number">4</span>
+                    <span class="nav-title">Xã hội</span>
+                </div>
+                <div class="nav-item" data-group="4">
+                    <span class="nav-number">5</span>
+                    <span class="nav-title">Quản lý</span>
+                </div>
+                <div class="nav-item" data-group="5">
+                    <span class="nav-number">6</span>
+                    <span class="nav-title">Nghiệp vụ</span>
+                </div>
+                <div class="nav-item" data-group="result">
+                    <span class="nav-number">7</span>
+                    <span class="nav-title">Kết quả</span>
+                </div>
+            </div>
+
+            <!-- Question content -->
+            <div class="question-content">
+                <div class="group-header">
+                    <h2 id="groupTitle">Nhóm Kỹ thuật (Realistic - R)</h2>
+                    <p id="groupDescription">Nếu có đầy đủ cơ hội và nguồn lực, tôi có thích...</p>
+                </div>
+                
+                <div class="rating-header">
+                    <div class="rating-labels">
+                        <span></span>
+                        <span>Rất không thích</span>
+                        <span>Không thích</span>
+                        <span>Bình thường</span>
+                        <span>Thích</span>
+                        <span>Rất thích</span>
+                    </div>
+                </div>
+
+                <div id="questionsList" class="questions-list">
+                    <!-- Câu hỏi sẽ được tạo động -->
+                </div>
+
+                <div class="navigation-buttons">
+                    <button id="prevGroupBtn" class="btn btn-secondary">Nhóm trước</button>
+                    <button id="nextGroupBtn" class="btn btn-primary">Nhóm tiếp</button>
+                    <button id="finishBtn" class="btn btn-success" style="display: none;">Hoàn thành</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình kết quả -->
+        <div id="resultScreen" class="screen">
+            <div class="result-card">
+
+                <h1>Kết quả trắc nghiệm Holland Code</h1>
+                
+                <div class="result-info">
+                    <p><strong>Họ tên:</strong> <span id="resultName"></span></p>
+                </div>
+                
+                 <div class="top-three">
+                    <h3>Tính cách nổi bật của bạn:</h3>
+                    <div id="Reesults">
+                        <!-- Top 3 nhóm sẽ được hiển thị ở đây -->
+                    </div>
+                </div>
+
+                <div class="holland-results" id="hollandResults">
+                    <!-- Kết quả 6 nhóm sẽ được hiển thị ở đây -->
+                </div>
+
+
+                <div class="result-actions">
+                    <button id="restartBtn" class="btn btn-primary">Làm lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
