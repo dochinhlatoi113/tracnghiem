@@ -1,0 +1,17 @@
+﻿{
+  "functions": {
+    "p2/index.html": {
+      "memory": 1024
+    },
+    "p3/index.html": {
+      "memory": 1024
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "cleanUrls": true
+}
